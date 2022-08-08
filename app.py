@@ -7,6 +7,9 @@ class Pedido:
         self.taxa_de_servico = 0
         self.itens_consumidos = []
 
+    def adiciona_prato(self, prato):
+        self.itens_consumidos.append(prato)
+
     def calcular_total(self):
         total = 0
         for i in self.itens_consumidos:
@@ -22,8 +25,7 @@ class Pedido:
             print(f'{i.__class__.__name__} de {i.recheio} ------------- R${i.preco}')
         print(f'Taxa de Serviço (5%) ------------- R${self.taxa_de_servico}')
         print(f'Valor total ---------------------- R${total}')
-                
-
+        
 
 class Lanche:
     def __init__(self, pao, recheio, molho):
@@ -122,23 +124,26 @@ if __name__ == '__main__':
                 cardapio(tipo='geral')
                 print('- Para escolher um prato: ')
                 opcao_cardapio = insere_opcao(1, 4)
+
                 if opcao_cardapio == 1:
                     cardapio(tipo='pizza')
                     print('- Para escolher sua pizza: ')
                     opcao_pizza = insere_opcao(1, 4)
-                    pedido.itens_consumidos.append(pizza[opcao_pizza-1])
+                    pedido.adiciona_prato(pizza[opcao_pizza-1])
                     print('Pedido adicionado!')
+
                 if opcao_cardapio == 2:
                     cardapio(tipo='lanche')
                     print('- Para escolher seu lanche: ')
                     opcao_lanche = insere_opcao(1, 4)
-                    pedido.itens_consumidos.append(lanche[opcao_lanche-1])
+                    pedido.adiciona_prato(lanche[opcao_lanche-1])
                     print('Pedido adicionado!')
+                    
                 if opcao_cardapio == 3:
                     cardapio(tipo='salgado')
                     print('- Para escolher seu salgado: ')
                     opcao_salgado = insere_opcao(1, 4)
-                    pedido.itens_consumidos.append(salgado[opcao_salgado-1])
+                    pedido.adiciona_prato(salgado[opcao_salgado-1])
                     print('Pedido adicionado!')
                 print()
 
